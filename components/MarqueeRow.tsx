@@ -42,6 +42,8 @@ export function MarqueeRow({ images, activeIndex }: MarqueeRowProps) {
           }
         `}</style>
         <div className="marquee-container relative w-full h-[437px] md:h-[621px] flex items-center justify-center overflow-hidden">
+          {/* Central glow behind active card */}
+          <div className="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full bg-[#6c24d6]/8 blur-[80px] pointer-events-none" />
         {images.map((src, i) => {
           const offset = getOffset(i, activeIndex, numImages);
 

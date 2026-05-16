@@ -29,10 +29,17 @@ function Select({ label, options }: { label: string, options: string[] }) {
         {label}
       </label>
       <div className="relative">
-        <select className="w-full appearance-none bg-white/60 backdrop-blur-md border border-white/80 text-black rounded-2xl px-5 py-4 outline-none transition-all duration-300 focus:bg-white focus:border-[#6c24d6]/30 focus:ring-4 focus:ring-[#6c24d6]/10 focus:shadow-sm cursor-pointer">
-          <option value="" disabled selected hidden>Select an option...</option>
+        <select
+          defaultValue=""
+          className="w-full appearance-none bg-white/60 backdrop-blur-md border border-white/80 text-black rounded-2xl px-5 py-4 outline-none transition-all duration-300 focus:bg-white focus:border-[#6c24d6]/30 focus:ring-4 focus:ring-[#6c24d6]/10 focus:shadow-sm cursor-pointer"
+        >
+          <option value="" disabled hidden>
+            Select an option...
+          </option>
           {options.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
           ))}
         </select>
         <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
