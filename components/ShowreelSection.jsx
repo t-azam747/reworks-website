@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback, Fragment } from 'react'
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -412,9 +412,8 @@ function StatsStrip() {
       }}
     >
       {stats.map((s, i) => (
-        <>
+        <Fragment key={s.label}>
           <motion.div
-            key={s.label}
             className="flex flex-col gap-1 px-6 py-4"
             style={{ background: 'var(--surface2)' }}
             whileHover={{ background: '#1e1e1d' }}
@@ -431,9 +430,9 @@ function StatsStrip() {
             </span>
           </motion.div>
           {i < 2 && (
-            <div key={`div-${i}`} style={{ background: 'rgba(245,244,240,0.07)', width: 1 }} />
+            <div style={{ background: 'rgba(245,244,240,0.07)', width: 1 }} />
           )}
-        </>
+        </Fragment>
       ))}
     </motion.div>
   )
