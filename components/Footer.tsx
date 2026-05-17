@@ -34,7 +34,7 @@ export function Footer() {
   return (
     <footer 
       ref={containerRef} 
-      className="relative bg-[#0A0A0A] text-white overflow-hidden pt-32 pb-8"
+      className="relative bg-[#0A0A0A] text-white overflow-hidden pt-16 sm:pt-24 md:pt-32 pb-6 sm:pb-8"
     >
       {/* ─── Depth & Texture ─── */}
       <div 
@@ -46,10 +46,10 @@ export function Footer() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#6c24d6]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[10%] w-[800px] h-[400px] bg-[#e1e61b]/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* ─── Top Grid ─── */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 sm:gap-12 md:gap-8 mb-16 sm:mb-24">
           
           {/* Brand Col */}
           <div className="md:col-span-6 lg:col-span-5 flex flex-col items-start">
@@ -130,20 +130,20 @@ export function Footer() {
               <div key={i} className="flex items-center gap-12">
                 {/* Outlined variant */}
                 <span 
-                  className="text-[8rem] lg:text-[13rem] font-black text-transparent leading-none bg-clip-text bg-gradient-to-b from-white/10 to-white/0 select-none" 
+                  className="text-[5rem] sm:text-[8rem] lg:text-[13rem] font-black text-transparent leading-none bg-clip-text bg-gradient-to-b from-white/10 to-white/0 select-none" 
                   style={{ WebkitTextStroke: "1px rgba(255,255,255,0.15)" }}
                 >
                   Works
                 </span>
                 
-                <Star className="w-16 h-16 lg:w-20 lg:h-20 text-[#3b82f6] fill-[#3b82f6] opacity-60 drop-shadow-[0_0_30px_rgba(59,130,246,0.8)] shrink-0" />
+                <Star className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-[#3b82f6] fill-[#3b82f6] opacity-60 drop-shadow-[0_0_30px_rgba(59,130,246,0.8)] shrink-0" />
                 
                 {/* Solid variant */}
-                <span className="text-[8rem] lg:text-[13rem] font-black text-[#d4d81a] leading-none drop-shadow-[0_0_60px_rgba(212,216,26,0.15)] select-none">
+                <span className="text-[5rem] sm:text-[8rem] lg:text-[13rem] font-black text-[#d4d81a] leading-none drop-shadow-[0_0_60px_rgba(212,216,26,0.15)] select-none">
                   ReWorks
                 </span>
                 
-                <Star className="w-16 h-16 lg:w-20 lg:h-20 text-[#6c24d6] fill-[#6c24d6] opacity-60 drop-shadow-[0_0_30px_rgba(108,36,214,0.8)] shrink-0" />
+                <Star className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-[#6c24d6] fill-[#6c24d6] opacity-60 drop-shadow-[0_0_30px_rgba(108,36,214,0.8)] shrink-0" />
               </div>
             ))}
           </motion.div>
@@ -153,7 +153,7 @@ export function Footer() {
         <div className="w-full h-px bg-white/5 mb-8" />
 
         {/* ─── Metadata Bottom ─── */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] font-bold uppercase tracking-widest text-white/30">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-white/30">
           <div>
             © {new Date().getFullYear()} REWORKS AGENCY • ALL RIGHTS RESERVED
           </div>

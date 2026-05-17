@@ -7,13 +7,6 @@ import { motion, Variants } from "framer-motion";
 import { LogoTicker } from "./LogoTicker";
 
 // ── Cinematic entrance timing ────────────────────────────────────────────────
-// Layer 0 → background cards  (0.0s)
-// Layer 1 → center card        (0.4s)
-// Layer 2 → headline           (0.75s)
-// Layer 3 → CTA button         (1.0s)
-// Layer 4 → controls + tagline (1.25s)
-// Layer 5 → logo ticker        (1.5s)
-
 const FADE_UP = (delay: number): Variants => ({
   hidden: { opacity: 0, y: 28, filter: "blur(4px)" },
   show: {
@@ -103,34 +96,34 @@ export function Hero() {
   return (
     <div
       className="relative flex flex-col w-full bg-white overflow-hidden"
-      style={{ height: "calc(100vh - 80px)" }}
+      style={{ height: "calc(100vh - 80px)", minHeight: "600px" }}
     >
-      {/* ── Layer 0: Background cards (first to appear) ─────────────────── */}
+      {/* ── Layer 0: Background cards ─────────────────────────────────── */}
       <motion.div
         variants={FADE_IN(0)}
         initial="hidden"
         animate="show"
-        className="absolute inset-x-0 top-0 flex items-start justify-center pt-16 md:pt-28 overflow-hidden pointer-events-none opacity-90"
+        className="absolute inset-x-0 top-0 flex items-start justify-center pt-8 sm:pt-16 md:pt-28 overflow-hidden pointer-events-none opacity-90"
       >
         <MarqueeRow images={rowImages} activeIndex={activeIndex} />
       </motion.div>
 
       {/* ── Center content column ──────────────────────────────────────── */}
-      <div className="w-full h-full relative z-10 flex flex-col items-center justify-center flex-grow mt-70">
+      <div className="w-full h-full relative z-10 flex flex-col items-center justify-center flex-grow mt-32 sm:mt-48 md:mt-56 lg:mt-70">
         {/* Purple ambient glow */}
-        <div className="absolute w-[500px] h-[500px] rounded-full bg-[#6c24d6]/10 blur-[100px] pointer-events-none" />
+        <div className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-[#6c24d6]/10 blur-[100px] pointer-events-none" />
 
         {/* ── Layer 1: The card shell ──────────────────────────────────── */}
         <motion.div
           variants={FADE_UP(0.4)}
           initial="hidden"
           animate="show"
-          className="bg-white rounded-[32px] shadow-[0_20px_60px_-8px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(180,140,60,0.12)] flex flex-col md:flex-row items-center w-[90%] max-w-3xl gap-8 transition-transform hover:scale-[1.02] duration-500 ease-out"
+          className="bg-white rounded-[24px] sm:rounded-[32px] shadow-[0_20px_60px_-8px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(180,140,60,0.12)] flex flex-col md:flex-row items-center w-[94%] sm:w-[90%] max-w-3xl gap-4 sm:gap-8 transition-transform hover:scale-[1.02] duration-500 ease-out"
         >
-          <div className="w-full bg-[#faf7f7] rounded-[24px] p-8 md:p-10 relative overflow-hidden flex items-center justify-between">
+          <div className="w-full bg-[#faf7f7] rounded-[18px] sm:rounded-[24px] p-6 sm:p-8 md:p-10 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-0">
             {/* Decorative circles */}
-            <div className="absolute right-0 top-0 w-64 h-64 border border-[#7A3FF3]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
-            <div className="absolute right-0 top-0 w-96 h-96 border border-[#7A3FF3]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
+            <div className="absolute right-0 top-0 w-40 sm:w-64 h-40 sm:h-64 border border-[#7A3FF3]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
+            <div className="absolute right-0 top-0 w-64 sm:w-96 h-64 sm:h-96 border border-[#7A3FF3]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
 
             {/* ── Layer 2: Headline ──────────────────────────────────── */}
             <motion.div
@@ -138,7 +131,7 @@ export function Hero() {
               initial="hidden"
               animate="show"
             >
-              <h1 className="text-black text-5xl md:text-7xl tracking-tight leading-[1.1]">
+              <h1 className="text-black text-4xl sm:text-5xl md:text-7xl tracking-tight leading-[1.1]">
                 <span className="font-light text-black/60">We</span>
                 <br />
                 <span className="font-black text-[#6c24d6] tracking-wide">
@@ -155,9 +148,9 @@ export function Hero() {
               variants={FADE_UP(1.0)}
               initial="hidden"
               animate="show"
-              className="z-10 mt-auto pt-8 md:pt-0 self-end"
+              className="z-10 sm:mt-auto sm:pt-0 self-start sm:self-end"
             >
-              <button className="bg-[#6c24d6] hover:bg-[#4E39DF] text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-[#5C45F4]/30 hover:shadow-[#5C45F4]/50 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-200 ease-out active:translate-y-0 active:scale-100">
+              <button className="bg-[#6c24d6] hover:bg-[#4E39DF] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-medium shadow-lg shadow-[#5C45F4]/30 hover:shadow-[#5C45F4]/50 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-200 ease-out active:translate-y-0 active:scale-100">
                 Get started
               </button>
             </motion.div>
@@ -169,17 +162,17 @@ export function Hero() {
           variants={FADE_UP(1.25)}
           initial="hidden"
           animate="show"
-          className="mt-8 flex items-center gap-4 ml-auto mt-50 mr-20"
+          className="flex items-center gap-3 sm:gap-4 mt-6 sm:mt-8 ml-auto mr-4 sm:mr-10 md:mr-20 mt-12 sm:mt-20 md:mt-32 lg:mt-50"
         >
           <button
-            className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto"
             onClick={handlePrev}
           >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
           </button>
 
           <button
-            className="relative w-14 h-14 flex items-center justify-center rounded-full group pointer-events-auto"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full group pointer-events-auto"
             onClick={togglePlay}
           >
             <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
@@ -192,18 +185,18 @@ export function Hero() {
                 strokeLinecap="round"
               />
             </svg>
-            <div className="z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-sm border border-gray-100">
+            <div className="z-10 bg-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shadow-sm border border-gray-100">
               {isPlaying
-                ? <Pause className="w-4 h-4 text-black fill-black" />
-                : <Play className="w-4 h-4 text-black fill-black ml-0.5" />}
+                ? <Pause className="w-3 h-3 sm:w-4 sm:h-4 text-black fill-black" />
+                : <Play className="w-3 h-3 sm:w-4 sm:h-4 text-black fill-black ml-0.5" />}
             </div>
           </button>
 
           <button
-            className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors pointer-events-auto"
             onClick={handleNext}
           >
-            <ArrowRight className="w-5 h-5 text-gray-600" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
           </button>
         </motion.div>
       </div>
@@ -213,9 +206,9 @@ export function Hero() {
         variants={FADE_UP(1.25)}
         initial="hidden"
         animate="show"
-        className="text-center max-w-xl px-4 mx-auto pb-8 z-10"
+        className="text-center max-w-xl px-6 sm:px-4 mx-auto pb-6 sm:pb-8 z-10"
       >
-        <p className="text-xl md:text-xl text-gray-800 font-medium italic leading-snug">
+        <p className="text-base sm:text-lg md:text-xl text-gray-800 font-medium italic leading-snug">
           <b>Rework to Revolutionize.</b>
           <br />
           We turn scattered brands into sharp, scroll-stopping systems — built to move brands in Dubai and across the UAE.
@@ -227,7 +220,7 @@ export function Hero() {
         variants={FADE_IN(1.5)}
         initial="hidden"
         animate="show"
-        className="mt-auto z-10 w-full relative pt-10"
+        className="mt-auto z-10 w-full relative pt-4 sm:pt-10"
       >
         <LogoTicker />
       </motion.div>

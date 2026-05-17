@@ -109,7 +109,7 @@ function Card({
           scale,
           top: `calc(-5vh + ${i * 28}px)`,
         }}
-        className="relative flex flex-col md:flex-row -top-[10%] w-[88%] max-w-5xl h-[520px] md:h-[440px] rounded-3xl overflow-hidden origin-top shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35),0_8px_20px_-8px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.05)]"
+        className="relative flex flex-col md:flex-row -top-[10%] w-[94%] sm:w-[88%] max-w-5xl h-[460px] sm:h-[520px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden origin-top shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35),0_8px_20px_-8px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.05)]"
       >
         {/* ── Background texture & gradient overlays ───────────────── */}
         <div
@@ -131,7 +131,7 @@ function Card({
 
         {/* ── Left: Text content ─────────────────────────────────────── */}
         <div
-          className="relative z-[2] flex flex-col justify-between p-8 md:p-12 w-full md:w-[52%] h-full"
+          className="relative z-[2] flex flex-col justify-between p-6 sm:p-8 md:p-12 w-full md:w-[52%] h-full"
           style={{ color: textColor }}
         >
           {/* Step + Title */}
@@ -148,7 +148,7 @@ function Card({
             </div>
 
             <h3
-              className="text-6xl md:text-7xl font-black tracking-tight leading-none mb-6"
+              className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-none mb-4 sm:mb-6"
               style={{ color: textColor }}
             >
               {title}
@@ -175,7 +175,7 @@ function Card({
         </div>
 
         {/* ── Right: Image ────────────────────────────────────────────── */}
-        <div className="relative w-full md:w-[48%] h-52 md:h-full overflow-hidden">
+        <div className="relative w-full md:w-[48%] h-40 sm:h-52 md:h-full overflow-hidden">
           <motion.div className="absolute inset-0" style={{ scale: imageScale }}>
             <Image
               src={image}
@@ -205,20 +205,20 @@ export function HowWeWork() {
   return (
     <section ref={container} className="relative bg-[#f5f5f0]">
       {/* ── Section header ──────────────────────────────────────── */}
-      <div className="relative z-20 pt-24 pb-4 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+      <div className="relative z-20 pt-16 sm:pt-24 pb-4 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
         <div>
           <div className="inline-flex items-center gap-2 border border-black/15 rounded-full px-4 py-1.5 mb-6 bg-black text-white">
             <span className="w-1.5 h-1.5 rounded-full bg-[#e1e61b]" />
             <span className="text-[9px] font-bold uppercase tracking-widest">How We Work</span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-black leading-[1.05]">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-black leading-[1.05]">
             Four steps.
             <br />
             <span className="text-[#6c24d6] italic">Zero fluff.</span>
           </h2>
         </div>
-        <p className="max-w-xs text-sm text-black/70 px-4 py-2 rounded-full leading-relaxed font-medium lg:pb-3">
-          # No hand-holding. No ten-week discovery phases. We move at the speed your brand actually needs.
+        <p className="max-w-xs text-sm text-black/70 leading-relaxed font-medium lg:pb-3">
+          No hand-holding. No ten-week discovery phases. We move at the speed your brand actually needs.
         </p>
       </div>
 

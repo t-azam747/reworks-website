@@ -103,7 +103,7 @@ export function ContactSection() {
               </span>
             </div>
 
-            <h2 className="text-6xl md:text-[5.5rem] font-black tracking-tighter text-black leading-[0.9] mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter text-black leading-[0.9] mb-6 sm:mb-8">
               Let&apos;s <span className="text-[#6c24d6] italic">rework</span><br />
               something<br />
               <span className="relative inline-block">
@@ -172,9 +172,9 @@ export function ContactSection() {
             <div className="absolute -inset-1 bg-gradient-to-r from-[#6c24d6]/20 to-[#e1e61b]/20 rounded-[2.5rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             
             {/* Form Container */}
-            <div className="relative w-full bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-[2rem] p-8 md:p-10 flex flex-col gap-6 transition-all duration-500 hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] hover:bg-white/50">
+            <div className="relative w-full bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] rounded-[1.5rem] sm:rounded-[2rem] p-5 sm:p-8 md:p-10 flex flex-col gap-5 sm:gap-6 transition-all duration-500 hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] hover:bg-white/50">
               
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <Input label="Name" placeholder="Jane Doe" required />
                 </div>
@@ -183,7 +183,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <Select label="Service" options={["Branding & Design", "Social Media", "Motion & Video", "Web Development", "Full Audit"]} />
                 </div>

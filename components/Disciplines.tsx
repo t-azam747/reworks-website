@@ -58,7 +58,7 @@ const disciplines: Discipline[] = [
   },
 ];
 
-// Shared spring config — same feel as the Skiper HoverExpand reference
+// Shared spring config
 const SPRING = { type: "spring" as const, stiffness: 340, damping: 30, mass: 0.8 };
 const SPRING_SLOW = { type: "spring" as const, stiffness: 260, damping: 28, mass: 1 };
 
@@ -66,24 +66,24 @@ export function Disciplines() {
   const [active, setActive] = useState<number>(0);
 
   return (
-    <section className="w-full bg-white py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="w-full bg-white py-16 sm:py-24 md:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-8">
+        <div className="mb-10 sm:mb-16">
+          <div className="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-6 sm:mb-8">
             <span className="w-2 h-2 rounded-full bg-[#6c24d6]" />
             <span className="text-xs font-bold uppercase tracking-widest text-black/60">
               What We Do
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] max-w-2xl">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] max-w-2xl">
             Four <span className="text-[#e1e61b] drop-shadow-lg italic" style={{ WebkitTextStroke: "1px #282727ff" }} >Disciplines</span>,<br />one <span className="text-[#6c24d6]">Studio.</span>
           </h2>
         </div>
 
-        {/* Accordion Cards — layout prop lets Framer own the reflow */}
-        <motion.div layout className="flex w-full items-stretch gap-3 h-[520px]">
+        {/* ── Desktop: Horizontal Accordion (md+) ─────────────────── */}
+        <motion.div layout className="hidden md:flex w-full items-stretch gap-3 h-[520px]">
           {disciplines.map((disc, index) => {
             const isActive = active === index;
             const isLight = disc.text === "black";
@@ -96,7 +96,6 @@ export function Disciplines() {
                 style={{
                   backgroundColor: disc.bg,
                   flexGrow: isActive ? 3 : 1,
-                  // border only on white card so it doesn't disappear into page bg
                   outline: disc.bg === "#ffffff" ? "1px solid #e5e7eb" : "none",
                 }}
                 transition={SPRING}
@@ -115,7 +114,6 @@ export function Disciplines() {
                     alt={disc.title}
                     className="w-full h-full object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100"
                   />
-                  {/* Dark overlay for text legibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
                 </motion.div>
 
@@ -147,8 +145,6 @@ export function Disciplines() {
 
                 {/* Bottom content block */}
                 <div className="absolute bottom-8 left-6 right-6 z-10 overflow-hidden">
-
-                  {/* Title — swaps between vertical & horizontal smoothly */}
                   <AnimatePresence mode="wait" initial={false}>
                     {isActive ? (
                       <motion.h3
@@ -181,7 +177,6 @@ export function Disciplines() {
                     )}
                   </AnimatePresence>
 
-                  {/* Description + Tags — staggered entrance */}
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
@@ -232,6 +227,85 @@ export function Disciplines() {
             );
           })}
         </motion.div>
+
+        {/* ── Mobile: Vertical Cards (below md) ──────────────────── */}
+        <div className="flex flex-col gap-4 md:hidden">
+          {disciplines.map((disc, index) => {
+            const isActive = active === index;
+
+            return (
+              <motion.div
+                key={index}
+                layout
+                onClick={() => setActive(isActive ? -1 : index)}
+                className="relative cursor-pointer overflow-hidden rounded-2xl group"
+                style={{
+                  backgroundColor: disc.bg,
+                  outline: disc.bg === "#ffffff" ? "1px solid #e5e7eb" : "none",
+                }}
+                animate={{ height: isActive ? 340 : 100 }}
+                transition={SPRING}
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0 w-full h-full z-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={disc.image}
+                    alt={disc.title}
+                    className="w-full h-full object-cover opacity-90"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 p-5 h-full flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-black tracking-widest text-white/60">
+                      {disc.number}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isActive ? 90 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ArrowRight className="w-5 h-5 text-white/70" />
+                    </motion.div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-black text-xl sm:text-2xl text-white tracking-tight leading-tight italic">
+                      {disc.title}
+                    </h3>
+
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={SPRING}
+                        >
+                          <p className="text-sm text-white/80 leading-relaxed mt-3 mb-4">
+                            {disc.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {disc.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full border border-white/30 text-white bg-white/10"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
       </div>
     </section>

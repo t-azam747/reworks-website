@@ -229,7 +229,7 @@ function BrandBentoCard({
 export function AboutStudio() {
   return (
     <section
-      className="relative w-full py-24 md:py-32 overflow-hidden border-t border-black/10"
+      className="relative w-full py-16 sm:py-24 md:py-32 overflow-hidden border-t border-black/10"
       style={{
         // Subtle noise/linen texture on a warm off-white so it's never pure white
         backgroundColor: "#f7f6f2",
@@ -240,7 +240,7 @@ export function AboutStudio() {
         `,
       }}
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
         <motion.div
@@ -257,7 +257,7 @@ export function AboutStudio() {
                 About Studio
               </span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05]">
               We don&apos;t do{" "}
               <span className="text-[#6c24d6] italic">ordinary.</span>
               <br />
@@ -281,7 +281,7 @@ export function AboutStudio() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[260px]">
+          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[260px] gap-4 sm:gap-6">
             {features.map((feature) => (
               <BrandBentoCard key={feature.name} {...feature} />
             ))}

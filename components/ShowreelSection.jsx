@@ -49,7 +49,7 @@ function TopBar() {
       initial={{ opacity: 0, y: -12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="flex justify-between items-center mb-12 pb-5"
+      className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-12 pb-4 sm:pb-5 gap-3 sm:gap-0"
       style={{ borderBottom: '0.5px solid var(--white-faint)' }}
     >
       <div className="flex items-center gap-4">
@@ -81,23 +81,23 @@ function HeroTitle() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.75, delay: 0.1 }}
-      className="flex items-baseline mb-10 overflow-hidden"
+      className="flex flex-wrap items-baseline mb-6 sm:mb-10 overflow-hidden gap-0"
     >
       <span
         className="font-display leading-none tracking-tight select-none"
-        style={{ fontSize: 'clamp(72px, 9vw, 112px)', color: 'var(--white)' }}
+        style={{ fontSize: 'clamp(40px, 9vw, 112px)', color: 'var(--white)' }}
       >
         The&nbsp;
       </span>
       <span
         className="font-display leading-none tracking-tight gold-shimmer select-none"
-        style={{ fontSize: 'clamp(72px, 9vw, 112px)' }}
+        style={{ fontSize: 'clamp(40px, 9vw, 112px)' }}
       >
         Portfolio
       </span>
       <span
         className="font-display leading-none tracking-tight select-none"
-        style={{ fontSize: 'clamp(72px, 9vw, 112px)', color: 'var(--white-muted)' }}
+        style={{ fontSize: 'clamp(40px, 9vw, 112px)', color: 'var(--white-muted)' }}
       >
         .mp4
       </span>
@@ -470,7 +470,7 @@ function CTARow() {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.65, duration: 0.6 }}
-      className="flex justify-between items-center mt-8"
+      className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 sm:mt-8 gap-4 sm:gap-0"
     >
       <p className="font-body text-sm" style={{ color: 'var(--white-muted)', letterSpacing: '0.02em' }}>
         Est. 2019 — Award-winning creative studio
@@ -537,10 +537,13 @@ export default function ShowreelSection() {
 
   return (
     <div
-      className="relative w-full max-w-6xl mx-auto px-8 py-12"
+      className="relative w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-12"
       style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
     >
-      <CustomCursor />
+      {/* Custom cursor - hidden on touch devices via CSS */}
+      <div className="hidden md:block">
+        <CustomCursor />
+      </div>
       <TopBar />
       <HeroTitle />
 

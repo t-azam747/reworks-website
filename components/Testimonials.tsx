@@ -143,7 +143,7 @@ export function TestimonialsSection() {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(0,0,0,0.05)'/%3E%3C/svg%3E")`,
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-full flex flex-col lg:flex-row gap-12 lg:gap-8 items-center lg:items-stretch">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-8 items-center lg:items-stretch">
         
         {/* Left: Content */}
         <div className="flex-1 flex flex-col justify-center max-w-lg lg:max-w-md w-full shrink-0 z-20">
@@ -160,7 +160,7 @@ export function TestimonialsSection() {
               </span>
             </div>
             
-            <h2 className="text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] mb-6">
               Don&apos;t just <br />
               take our <br />
               <span className="bg-[#e1e61b] px-2 leading-none inline-block mt-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black italic">
@@ -203,7 +203,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Right: Scrolling Columns */}
-        <div className="flex-1 w-full h-[600px] lg:h-[800px] flex gap-4 lg:gap-6 justify-center">
+        <div className="flex-1 w-full h-[400px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-6 justify-center">
           <TestimonialsColumn
             testimonials={col1}
             duration={25}

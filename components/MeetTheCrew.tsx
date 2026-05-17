@@ -52,12 +52,14 @@ const crew = [
   },
 ];
 
+const CARD_WIDTH_SM = 220;
+const CARD_HEIGHT_SM = 320;
 const CARD_WIDTH = 280;
 const CARD_HEIGHT = 400;
 
 // ─── Spread positions for the fan stack ───────────────────────────────────────
 
-function getCardStyle(index: number, active: number, total: number): {
+function getCardStyle(index: number, active: number, total: number, isMobile: boolean): {
   rotate: number;
   x: number;
   y: number;
@@ -72,7 +74,7 @@ function getCardStyle(index: number, active: number, total: number): {
     return { rotate: 0, x: 0, y: 0, scale: 0.7, zIndex: 0, opacity: 0 };
   }
 
-  const spread = [
+  const spreadDesktop = [
     { rotate: -18, x: -220, y: 30, scale: 0.78, zIndex: 1, opacity: 0.7 },
     { rotate: -9, x: -110, y: 12, scale: 0.88, zIndex: 2, opacity: 0.85 },
     { rotate: 0, x: 0, y: 0, scale: 1, zIndex: 5, opacity: 1 },
@@ -80,6 +82,15 @@ function getCardStyle(index: number, active: number, total: number): {
     { rotate: 18, x: 220, y: 30, scale: 0.78, zIndex: 1, opacity: 0.7 },
   ];
 
+  const spreadMobile = [
+    { rotate: -14, x: -120, y: 20, scale: 0.75, zIndex: 1, opacity: 0.6 },
+    { rotate: -7, x: -60, y: 8, scale: 0.85, zIndex: 2, opacity: 0.8 },
+    { rotate: 0, x: 0, y: 0, scale: 1, zIndex: 5, opacity: 1 },
+    { rotate: 7, x: 60, y: 8, scale: 0.85, zIndex: 2, opacity: 0.8 },
+    { rotate: 14, x: 120, y: 20, scale: 0.75, zIndex: 1, opacity: 0.6 },
+  ];
+
+  const spread = isMobile ? spreadMobile : spreadDesktop;
   const mapIndex = offset + 2;
   return spread[mapIndex] ?? { rotate: 0, x: 0, y: 0, scale: 0.7, zIndex: 0, opacity: 0 };
 }
@@ -91,12 +102,16 @@ function TeamCard({
   style,
   isActive,
   onClick,
+  isMobile,
 }: {
   member: (typeof crew)[0];
   style: ReturnType<typeof getCardStyle>;
   isActive: boolean;
   onClick: () => void;
+  isMobile: boolean;
 }) {
+  const w = isMobile ? CARD_WIDTH_SM : CARD_WIDTH;
+  const h = isMobile ? CARD_HEIGHT_SM : CARD_HEIGHT;
   return (
     <motion.div
       animate={{
@@ -109,8 +124,8 @@ function TeamCard({
       }}
       transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.9 }}
       style={{
-        width: CARD_WIDTH,
-        height: CARD_HEIGHT,
+        width: w,
+        height: h,
         position: "absolute",
         cursor: isActive ? "default" : "pointer",
         transformOrigin: "bottom center",
@@ -179,9 +194,17 @@ function TeamCard({
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export function MeetTheCrew() {
-  const [active, setActive] = useState(2); // start on middle card
+  const [active, setActive] = useState(2);
+  const [isMobile, setIsMobile] = useState(false);
   const total = crew.length;
   const dragStartX = useRef(0);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const prev = useCallback(() => setActive((a) => Math.max(0, a - 1)), []);
   const next = useCallback(() => setActive((a) => Math.min(total - 1, a + 1)), [total]);
@@ -219,7 +242,7 @@ export function MeetTheCrew() {
                 The Team
               </span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.05]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.05]">
               Meet the{" "}
               <span className="text-[#e1e61b] italic">crew.</span>
             </h2>
@@ -232,7 +255,7 @@ export function MeetTheCrew() {
         {/* Card Fan */}
         <div
           className="relative flex items-center justify-center"
-          style={{ height: CARD_HEIGHT + 60 }}
+          style={{ height: (isMobile ? CARD_HEIGHT_SM : CARD_HEIGHT) + 60 }}
           // Touch / swipe support
           onTouchStart={(e) => { dragStartX.current = e.touches[0].clientX; }}
           onTouchEnd={(e) => {
@@ -245,9 +268,10 @@ export function MeetTheCrew() {
             <TeamCard
               key={member.name}
               member={member}
-              style={getCardStyle(i, active, total)}
+              style={getCardStyle(i, active, total, isMobile)}
               isActive={i === active}
               onClick={() => setActive(i)}
+              isMobile={isMobile}
             />
           ))}
         </div>
