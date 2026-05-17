@@ -4,6 +4,7 @@ import { useTransform, motion, useScroll, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { ReactLenis } from 'lenis/react';
 
 // ─── Step data ────────────────────────────────────────────────────────────────
 
@@ -107,7 +108,7 @@ function Card({
         style={{
           backgroundColor: color,
           scale,
-          top: `calc(-5vh + ${i * 28}px)`,
+          top: `calc(-5vh + ${i * 25}px)`,
         }}
         className="relative flex flex-col md:flex-row -top-[10%] w-[94%] sm:w-[88%] max-w-5xl h-[460px] sm:h-[520px] md:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden origin-top shadow-[0_20px_50px_-12px_rgba(0,0,0,0.35),0_8px_20px_-8px_rgba(0,0,0,0.2),0_0_0_1px_rgba(0,0,0,0.05)]"
       >
@@ -203,48 +204,50 @@ export function HowWeWork() {
   });
 
   return (
-    <section ref={container} className="relative bg-[#f5f5f0]">
-      {/* ── Section header ──────────────────────────────────────── */}
-      <div className="relative z-20 pt-16 sm:pt-24 pb-4 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
-        <div>
-          <div className="inline-flex items-center gap-2 border border-black/15 rounded-full px-4 py-1.5 mb-6 bg-black text-white">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#e1e61b]" />
-            <span className="text-[9px] font-bold uppercase tracking-widest">How We Work</span>
+    <ReactLenis root>
+      <div ref={container} className="relative bg-[#f5f5f0]">
+        {/* ── Section header ──────────────────────────────────────── */}
+        <section className="relative z-20 pt-16 sm:pt-24 pb-4 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
+          <div>
+            <div className="inline-flex items-center gap-2 border border-black/15 rounded-full px-4 py-1.5 mb-6 bg-black text-white">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#e1e61b]" />
+              <span className="text-[9px] font-bold uppercase tracking-widest">How We Work</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-black leading-[1.05]">
+              Four steps.
+              <br />
+              <span className="text-[#6c24d6] italic">Zero fluff.</span>
+            </h2>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-black leading-[1.05]">
-            Four steps.
-            <br />
-            <span className="text-[#6c24d6] italic">Zero fluff.</span>
-          </h2>
-        </div>
-        <p className="max-w-xs text-sm text-black/70 leading-relaxed font-medium lg:pb-3">
-          No hand-holding. No ten-week discovery phases. We move at the speed your brand actually needs.
-        </p>
-      </div>
+          <p className="max-w-xs text-sm text-black/70 leading-relaxed font-medium lg:pb-3">
+            No hand-holding. No ten-week discovery phases. We move at the speed your brand actually needs.
+          </p>
+        </section>
 
-      {/* ── Stacking cards ─────────────────────────────────────────────── */}
-      <div className="-mt-8">
-        {steps.map((s, i) => {
-          const targetScale = 1 - (steps.length - i) * 0.04;
-          return (
-            <Card
-              key={`step_${i}`}
-              i={i}
-              step={s.step}
-              title={s.title}
-              description={s.description}
-              cta={s.cta}
-              color={s.color}
-              accent={s.accent}
-              textColor={s.textColor}
-              image={s.image}
-              progress={scrollYProgress}
-              range={[i * (1 / steps.length), 1]}
-              targetScale={targetScale}
-            />
-          );
-        })}
+        {/* ── Stacking cards ─────────────────────────────────────────────── */}
+        <section className="w-full">
+          {steps.map((s, i) => {
+            const targetScale = 1 - (steps.length - i) * 0.05;
+            return (
+              <Card
+                key={`step_${i}`}
+                i={i}
+                step={s.step}
+                title={s.title}
+                description={s.description}
+                cta={s.cta}
+                color={s.color}
+                accent={s.accent}
+                textColor={s.textColor}
+                image={s.image}
+                progress={scrollYProgress}
+                range={[i * 0.25, 1]}
+                targetScale={targetScale}
+              />
+            );
+          })}
+        </section>
       </div>
-    </section>
+    </ReactLenis>
   );
 }
